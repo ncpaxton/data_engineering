@@ -1,0 +1,29 @@
+   
+  106  cd w205/
+  107  ls
+  108  cd project-2-napoleon-paxton
+  110  docker-compose up -d
+  114  sudo ln -s /w205 w205
+  115  exit
+  116  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root' pyspark
+  117  cd ..
+  118  cd jupyter/
+  119  ls
+  120  cd w205/
+  121  ls
+  122  cd project-2-napoleon-paxton
+  123  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root' pyspark
+  124  ls
+  125  cd w205/
+  126  ls
+  127  git clone https://github.com/mids-w205-koister/project-2-napoleon-paxton.git
+  154  git add Project2.ipynb 
+  155  git commit -m "Adding Initial Jupyter Notebook file for project"
+  156  git push https://github.com/mids-w205-koister/project-2-napoleon-paxton.git
+  157  docker-compose logs -f kafka
+  158  docker-compose exec cloudera hadoop fs -ls /tmp/
+  159  docker-compose exec kafka kafka-topics --create --topic assessments --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  160  docker-compose up -d
+  161  docker-compose exec kafka kafka-topics --create --topic assessments --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  162  docker-compose exec mids bash -c "cat /w205/project-2-napoleon-paxton/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  163  docker-compose exec spark pyspark
